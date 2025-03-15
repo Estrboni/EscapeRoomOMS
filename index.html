@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMS Escape Room Educativo</title>
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <!-- Pantalla inicial -->
+  <div class="contenedor-principal" id="inicio">
+      <h1 class="titulo-principal">🩺¡Misión Salud Global!🔬</h1>
+  <h2 
+```>
+      
+      <div class="carta-bienvenida">
+          <p>¡Bienvenidos(as), Agente de Salud Global!</p>
+          <p>La OMS necesita tu ayuda ¡no hay tiempo que perder! Tendrás un tiempo designado para cada actividad tales como:</p>
+          <ul>
+              <li>🔍 Completar un rompecabezas</li>
+              <li>🧪 Identificar patógenos </li>
+              <li>💡 ¿Códigos?</li>
+
+              <li>🏃 Escapar del virus </li>
+          </ul>
+          <p>Desbloquearás el objetivo final al completar el 100% de las actividades.</p>
+      </div>
+
+      <a href="#" class="boton-comenzar" onclick="startMission(event)">¡Aceptar Misión!</a>
+  </div>
+
+  <!-- Sección del rompecabezas -->
+  <div id="puzzle-section">
+      <div id="timer">01:30</div>
+      
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+          <div id="puzzle-grid"></div>
+          <div class="referencia-container">
+              <img id="logo-referencia" src="https://www.who.int/images/default-source/default-album/who-emblem-rgb.png">
+          </div>
+      </div>
+      
+      <button class="boton-mezclar" onclick="mezclarPiezas()">🔄 Mezclar</button>
+  </div>
+
+  <!-- Sección de identificación de virus -->
+  <div class="virus-container" id="virus-section">
+      <h1>🔍 Identificación de Virus</h1>
+      <img id="virus-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Coronavirus_structure.svg/1200px-Coronavirus_structure.svg.png">
+      <input type="text" id="answerInput" placeholder="Escribe el nombre del virus">
+      <p id="feedback"></p>
+  </div>
+
+  <!-- Modal de éxito -->
+  <div id="success-modal">
+      <div class="modal-success">
+          <h1>🎉 ¡Felicidades! 🎉</h1>
+          <h3>¡Completaste el rompecabezas a tiempo!</h3>
+          <button id="continue-mission-button" onclick="window.location.href='nivel2.html'">Continuar Misión ➡️</button>
+      </div>
+  </div>
+
+  <!-- Modal de fin de juego -->
+  <div id="end-modal">
+      <div class="modal-content">
+          <h3>⏳ ¡Tiempo agotado! ⏳</h3>
+          <button onclick="restartGame()">🔄 Volver a jugar</button>
+          <button onclick="window.location.href='nivel2.html'">⏭️ Saltar</button>
+      </div>
+  </div>
+
+  <script src="script1.js"></script>
+</body>
+</html>
