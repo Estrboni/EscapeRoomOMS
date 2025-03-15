@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel 3 - Historia de la OMS</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">📅 ¿En qué año surgió la OMS?</h1>
+        <div class="hint">
+            <p class="hint-text">Pista: -- ... --- ...- .- .--. .---- ----. ....- - .... - (Código Morse)</p>
+        </div>
+        <div class="input-container">
+            <input type="text" id="respuesta" placeholder="Escribe la fecha (ej: 7-4-1948)">
+            <div class="input-aura"></div>
+        </div>
+        <div class="timer-container">
+            <div id="timer">00:30</div>
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <button class="btn btn-skip" onclick="saltarNivel()">⏭️ Saltar al Nivel 4</button>
+    </div>
+    <!-- Modales -->
+    <div id="success-modal" class="modal success">
+        <div class="modal-content">
+            <h2 class="modal-title">🎉 ¡CORRECTO! 🎉</h2>
+            <button class="modal-btn" onclick="window.location.href='nivel4.html'">CONTINUAR ➡️</button>
+        </div>
+    </div>
+    <div id="error-modal" class="modal error">
+        <div class="modal-content">
+            <h2 class="modal-title">❌ ERROR ❌</h2>
+        </div>
+    </div>
+    <div id="timeout-modal" class="modal timeout">
+        <div class="modal-content">
+            <h2 class="modal-title">⏳ ¡TIEMPO AGOTADO! ⏳</h2>
+            <button class="modal-btn" onclick="reiniciarIntento()">🔄 REINTENTAR</button>
+            <button class="modal-btn" onclick="saltarNivel()">⏭️ SALTAR</button>
+        </div>
+    </div>
+    <!-- Confeti -->
+    <div class="confetti"></div>
+    <script src="script3.js"></script>
+</body>
+</html>
