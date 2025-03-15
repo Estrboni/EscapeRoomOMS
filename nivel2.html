@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMICRON: Escape Room Médico</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <!-- TEMPORIZADOR -->
+    <div id="temporizador-container">
+        <h3 id="temporizador-titulo">⏳ Tiempo Restante</h3>
+        <span id="temporizador">15</span>
+    </div>
+    
+    <!-- SECCIÓN PRINCIPAL -->
+    <div id="virus-section">
+        <h1 class="titulo-principal">🦠 ¡Identifica el Virus! 🩺</h1>
+        <img id="virus-image" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/1851483/myYo5XEsp1beUMJN.jpg?Expires=1743013526&Signature=MSXY1ra5MZ8W~mCssJBD7Es3ac3bLv1cL9Hh4MB--eROPEUhGXP9fAKJz-Krv0eOKSE08qMbTDnrZn4A1kZj2uiH1gGgHc8Zqme5UceFjmd5UTRzBU3TmCEFLGWAK~MdWXjII1SFZnKh-kIWErq~PjGMdZwGBAgO-dWsB1l0cggDXGx1glUrauqRMYWO9J3SKqIjC4K5jPTbtyxk6B2INQ1Q~atTKKsiOQQ0aVTlJuXbMucblcajY5iaU91widsGnLBJCLFG0WeoOPuV5AFxAoh5ZW6Bjx~M-l4yjAQLmd3EGoLI6LoXHAPGWXL8Ze3AxyB9RUQdiKTOPKorPyqrhw__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Imagen del virus">
+        <input type="text" id="answerInput" placeholder="¿Qué virus es? 😷">
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="feedback"></p>
+        <button id="skipButton">⏭️ Saltar Nivel</button>
+    </div>
+
+    <!-- MODALES -->
+    <div id="timeout-modal">
+        <div class="emoji-rain"></div>
+        <div class="modal-content">
+            <h1>⏰¡Tiempo Agotado!⏰</h1>
+            <p>¿Qué quieres hacer?</p>
+            <button class="modal-button" onclick="reintentar()">🔄 Reintentar</button>
+            <button class="modal-button" onclick="saltarMision()">⏭️ Saltar Misión</button>
+        </div>
+    </div>
+
+    <div id="error-modal">
+        <div id="error-content">
+            <h2>❌ ¡Respuesta Incorrecta! ❌</h2>
+            <p>¡Vuelve a intentarlo!</p>
+        </div>
+    </div>
+
+    <div id="success-modal">
+        <div class="success-content">
+            <h2>✅ ¡Respuesta Correcta! ✅</h2>
+            <p>¡Avanzas al siguiente nivel! 🌟</p>
+        </div>
+    </div>
+
+    <div id="final-modal">
+        <div class="confeti-rain"></div>
+        <div class="final-content">
+            <h1>🏆 ¡Misión 2 Completada con Éxito! 🏆</h1>
+            <button class="final-button" onclick="irANivel3()">▶️ Completar Siguiente Misión</button>
+        </div>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
