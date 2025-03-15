@@ -1,0 +1,384 @@
+/* VARIABLES CSS */
+:root {
+    --rojo-intenso: #FF4444;
+    --naranja-alerta: #FFA500;
+    --amarillo-alerta: #FFD700;
+    --azul-oms: #0093D5;
+    --verde-salud: #7AC143;
+    --blanco-hueso: #F5F5F5;
+    --rojo-claro: #FF9999;
+    --morado-virus: #8A2BE2;
+    --naranja-energia: #FF6B35;
+}
+
+/* ANIMACIONES PRINCIPALES */
+@keyframes tituloBrilloLento {
+    0% { text-shadow: 0 0 15px white; }
+    50% { text-shadow: 0 0 25px #FFD700; }
+    100% { text-shadow: 0 0 15px white; }
+}
+
+@keyframes pulsoSuave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fondoExplosivo {
+    0% { background-position: 0% 50%; transform: scale(1.1); }
+    50% { background-position: 100% 50%; transform: scale(1); }
+    100% { background-position: 0% 50%; transform: scale(1.1); }
+}
+
+@keyframes vibrar {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes errorBrusco {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes errorExit {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0; }
+}
+
+@keyframes successEntrance {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes successExit {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes lluviaMuyRapida {
+    0% { top: -50px; opacity: 0.7; }
+    100% { top: 120vh; opacity: 0.3; transform: translateY(150px) rotate(360deg); }
+}
+
+@keyframes modalAbruptEntrance {
+    0% { opacity: 0; transform: translateY(-20px) scale(1.2); }
+    50% { transform: translateY(0) scale(0.9); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes entradaFinal {
+    0% { transform: scale(0.8) translateY(-200px); opacity: 0; }
+    50% { transform: scale(1.2) translateY(50px); opacity: 1; }
+    100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes confetiAnim {
+    0% { top: -50px; left: calc(10% + var(--offset)); transform: rotate(0deg); }
+    100% { top: 120vh; left: calc(90% + var(--offset)); transform: rotate(360deg); }
+}
+
+/* ESTILOS GLOBALES */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--azul-oms), var(--morado-virus));
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+}
+
+.titulo-principal {
+    background: linear-gradient(45deg, var(--azul-oms), var(--verde-salud));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: tituloBrilloLento 3s infinite;
+    margin: 2rem 0;
+}
+
+#temporizador-container {
+    position: fixed;
+    top: 10px;
+    left: 42%;
+    transform: translateX(-50%);
+    background: var(--blanco-hueso);
+    padding: 20px 40px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    animation: pulsoSuave 1s infinite;
+    z-index: 1000;
+    text-align: center;
+}
+
+#temporizador-container h3 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+#temporizador {
+    font-size: 2em;
+    margin: 5px 0 0;
+    transition: color 0.3s;
+}
+
+#virus-section {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#virus-image {
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    margin: 20px auto;
+}
+
+#answerInput {
+    width: 80%;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 3px solid var(--azul-oms);
+    border-radius: 30px;
+    margin: 20px 0;
+    text-align: center;
+    transition: box-shadow 0.3s;
+}
+
+#answerInput:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--azul-oms);
+}
+
+#progress-container {
+    margin: 20px auto;
+    width: 80%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 100%;
+    background: var(--verde-salud);
+    transition: width 0.5s, background-color 0.5s;
+}
+
+#skipButton {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+#skipButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+}
+
+/* MODALES */
+#error-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, var(--rojo-intenso), var(--rojo-claro));
+    background-size: 300% 100%;
+    animation: fondoExplosivo 0.8s infinite;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+#error-content {
+    background: linear-gradient(45deg, #FF6B35, #FFD700);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.8);
+    text-align: center;
+    animation: vibrar 0.3s 3;
+}
+
+#timeout-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, var(--rojo-intenso), var(--rojo-claro));
+    background-size: 300% 100%;
+    animation: fondoExplosivo 0.6s infinite;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+#success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(97, 219, 97, 0.8);
+    justify-content: center;
+    align-items: center;
+    animation: successEntrance 0.3s, successExit 1.5s 1.2s forwards;
+    z-index: 1001;
+}
+
+.success-content {
+    background: linear-gradient(45deg, #00FFFF, #87CEEB);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0, 206, 209, 0.8);
+    text-align: center;
+    animation: vibrar 0.2s 2;
+    color: white;
+}
+
+#final-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #7AC143, #00FFFF);
+    background-size: 200% 100%;
+    animation: gradientMove 3s infinite, entradaFinal 0.5s forwards;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+}
+
+.final-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0 0 50px rgba(0, 148, 255, 0.7);
+    text-align: center;
+}
+
+.final-content h1 {
+    font-size: 2.5rem;
+    color: #0093D5;
+    text-shadow: 0 0 15px #7AC143;
+    margin-bottom: 40px;
+    animation: vibrar 0.3s 2;
+}
+
+.final-button {
+    background: linear-gradient(45deg, #7AC143, #00FFFF);
+    border: none;
+    padding: 20px 40px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 0 20px rgba(0, 148, 255, 0.7);
+    margin-top: 30px;
+}
+
+.final-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 148, 255, 1);
+}
+
+/* EFECTOS PARTICULARES */
+.emoji-rain, .confeti-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.emoji-item {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: lluviaMuyRapida 1.5s linear infinite;
+    opacity: 0.7;
+    transition: all 0.3s;
+    will-change: transform, opacity;
+}
+
+.confeti-item {
+    position: absolute;
+    font-size: 2rem;
+    animation: confetiAnim 3s linear infinite;
+    opacity: 0.8;
+}
+
+.modal-content {
+    background: linear-gradient(45deg, var(--naranja-energia), #FFD700);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    position: relative;
+    z-index: 1001;
+    animation: pulsoSuave 1.2s infinite;
+}
+
+.modal-content h1 {
+    color: black;
+    font-size: 3rem;
+    text-shadow: 0 0 15px white;
+    animation: tituloBrilloLento 3s infinite;
+    margin-bottom: 20px;
+}
+
+.modal-button {
+    background: linear-gradient(45deg, var(--azul-oms), var(--verde-salud));
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.modal-button:hover {
+    transform: scale(1.05);
+}
+
+#feedback {
+    font-size: 1.4rem;
+    margin: 15px 0;
+    min-height: 30px;
+}
