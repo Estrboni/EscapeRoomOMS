@@ -1,0 +1,334 @@
+/* Variables de color con tonos más vibrantes */
+:root {
+    --primary: #0093D5;
+    --success: #2ECC71;
+    --warning: #F39C12;
+    --danger: #E74C3C;
+    --text: #2C3E50;
+    --input-bg: #ECF0F1;
+}
+
+/* Nuevo fondo degradado global */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(
+        135deg, 
+        #3498DB, 
+        #2980B9, 
+        #34495E, 
+        #2C3E50
+    );
+    background-size: 400% 400%;
+    animation: gradient-move 15s ease infinite;
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+@keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.container:hover {
+    transform: rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    font-size: 3rem;
+    color: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--success));
+    -webkit-background-clip: text; /* Prefijo para WebKit */
+    background-clip: text; /* Propiedad estándar */
+    -webkit-text-fill-color: transparent;
+    animation: title-pulse 2s infinite alternate;
+}
+
+@keyframes title-pulse {
+    from { transform: scale(1); text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+    to { transform: scale(1.05); text-shadow: 0 0 20px rgba(0, 0, 0, 0.3); }
+}
+
+.hint {
+    background: rgba(46, 204, 113, 0.1);
+    padding: 15px 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 2px dashed var(--success);
+}
+
+.input-container {
+    position: relative;
+    margin: 30px 0;
+}
+
+input {
+    width: 80%;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    background: var(--input-bg);
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--success);
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.input-aura {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 40px;
+    background: radial-gradient(
+        circle, 
+        rgba(46, 204, 113, 0.2) 0%, 
+        transparent 70%
+    );
+    animation: aura-pulse 2s infinite alternate;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+input:focus + .input-aura {
+    opacity: 1;
+}
+
+@keyframes aura-pulse {
+    from { transform: scale(0.9); opacity: 0.5; }
+    to { transform: scale(1.1); opacity: 0.7; }
+}
+
+.timer-container {
+    margin: 30px 0;
+    background: var(--input-bg);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#timer {
+    font-size: 2.5rem;
+    color: var(--primary);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.progress-bar {
+    height: 12px;
+    width: 100%;
+    background: var(--success);
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all 0.4s;
+}
+
+.btn {
+    background: linear-gradient(45deg, var(--warning), var(--danger));
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent
+    );
+    transition: all 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Ventana de tiempo agotado */
+.modal.timeout .modal-content {
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 120, 0, 0.9), 
+        rgba(255, 200, 0, 0.9)
+    );
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    animation: alert-shake 0.5s infinite alternate;
+    color: white;
+}
+
+@keyframes alert-shake {
+    0% { transform: translateX(-5px) rotate(-2deg); }
+    100% { transform: translateX(5px) rotate(2deg); }
+}
+
+/* Ventana de éxito - Animación constante y colores vibrantes */
+.modal.success .modal-content {
+    width: 500px; /* Tamaño más grande */
+    height: 400px;
+    background: linear-gradient(
+        45deg, 
+        #2ECC71, /* Verde */
+        #1ABC9C /* Cian */
+    );
+    background-size: 200% 200%;
+    animation: success-background 5s ease infinite, pop-in 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 4px solid #1ABC9C; /* Borde cian brillante */
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5); /* Sombra cian */
+}
+
+@keyframes success-background {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pop-in {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal.success .modal-title {
+    font-size: 3.5rem; /* Letras aún más grandes */
+    color: white;
+    text-shadow: 0 0 10px #1ABC9C, 0 0 20px #2ECC71; /* Brillo cian y verde */
+    margin-bottom: 20px;
+}
+
+.modal-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-btn:hover {
+    background: white;
+    color: #1ABC9C; /* Color cian vibrante */
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.5); /* Sombra cian */
+}
+
+/* Ventana de error - Animación más brusca */
+.modal.error .modal-content {
+    background: linear-gradient(
+        135deg, 
+        #E74C3C, /* Rojo intenso */
+        #FF4500 /* Naranja vibrante */
+    );
+    animation: error-shake 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2; /* Repite 2 veces */
+    color: white;
+    text-shadow: 0 0 10px #E74C3C; /* Brillo rojo */
+    border: 4px solid #FF4500; /* Borde naranja */
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.7); /* Sombra roja */
+}
+
+@keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-15px); }
+    75% { transform: translateX(15px); }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95)); /* Fondo oscuro con efecto radial */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+/* Estilos para confeti */
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 15px; /* Tamaño más grande */
+    height: 15px;
+    background-color: #f1c40f;
+    top: -10px;
+    z-index: 9999;
+    animation: fall linear infinite, rotate linear infinite; /* Animaciones separadas */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(700vh); /* Caída vertical continua */
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(720deg); /* Rotación de 2 vueltas */
+    }
+}
