@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Devorador Biomecánico</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          cursor: none;
+      }
+      body, html {
+          height: 100vh;
+          width: 100vw;
+          background: black;
+          overflow: hidden;
+          perspective: 2000px;
+      }
+      .fondo-glitch {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: 
+              repeating-linear-gradient(
+                  0deg,
+                  rgba(0,0,0,0.8),
+                  rgba(10,0,0,0.9) 2px,
+                  transparent 2px,
+                  transparent 4px
+              );
+          opacity: 0.7;
+          z-index: 5;
+          animation: glitch-fondo 0.5s infinite alternate;
+      }
+      @keyframes glitch-fondo {
+          0% { filter: hue-rotate(0deg); }
+          100% { filter: hue-rotate(360deg); }
+      }
+      .gusano-mecanico {
+          position: absolute;
+          width: 300px;
+          height: 200px;
+          background: linear-gradient(
+              45deg, 
+              rgba(255,0,0,0.5), 
+              rgba(100,0,0,0.8)
+          );
+          border-radius: 50% / 30%;
+          transform-origin: center;
+          filter: 
+              brightness(1.5) 
+              contrast(1.5) 
+              saturate(2);
+          z-index: 100;
+          animation: 
+              movimiento-gusano 3s infinite alternate,
+              devorar-pantalla 5s forwards 4s;
+      }
+      @keyframes movimiento-gusano {
+          0% { transform: translateX(-20px) rotate(-5deg); }
+          100% { transform: translateX(20px) rotate(5deg); }
+      }
+      @keyframes devorar-pantalla {
+          0% { 
+              transform: scale(1) translate(0,0) rotate(0deg);
+          }
+          50% {
+              transform: scale(5) translate(100px, 200px) rotate(45deg);
+          }
+          100% {
+              transform: scale(50) translate(500px, 1000px) rotate(90deg);
+              opacity: 0;
+          }
+      }
+      .segmento-mecanico {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: 
+              repeating-radial-gradient(
+                  circle at center,
+                  rgba(255,0,0,0.3),
+                  rgba(100,0,0,0.5) 10px,
+                  rgba(50,0,0,0.7) 20px
+              );
+          opacity: 0.7;
+          animation: 
+              pulso-mecanico 2s infinite alternate,
+              deformacion-mecanica 3s infinite alternate;
+      }
+      @keyframes pulso-mecanico {
+          0% { 
+              transform: scale(0.9) rotate(-2deg);
+              opacity: 0.6;
+          }
+          100% { 
+              transform: scale(1.1) rotate(2deg);
+              opacity: 0.8;
+          }
+      }
+      @keyframes deformacion-mecanica {
+          0% { 
+              clip-path: polygon(
+                  50% 0%, 
+                  100% 38%, 
+                  82% 100%, 
+                  18% 100%, 
+                  0% 38%
+              );
+          }
+          50% {
+              clip-path: polygon(
+                  45% 10%, 
+                  90% 30%, 
+                  75% 90%, 
+                  25% 90%, 
+                  10% 30%
+              );
+          }
+          100% {
+              clip-path: polygon(
+                  40% 20%, 
+                  80% 20%, 
+                  70% 80%, 
+                  30% 80%, 
+                  20% 20%
+              );
+          }
+      }
+      .dientes-metalicos {
+          position: absolute;
+          width: 50px;
+          height: 30px;
+          background: linear-gradient(
+              to bottom, 
+              #FF0000, 
+              #8B0000
+          );
+          clip-path: polygon(
+              50% 0%, 
+              100% 50%, 
+              50% 100%, 
+              0% 50%
+          );
+          transform-origin: center;
+          animation: 
+              vibrar-dientes 0.3s infinite alternate,
+              rotar-dientes 2s linear infinite;
+      }
+      @keyframes vibrar-dientes {
+          0% { transform: rotate(-10deg) scale(0.9); }
+          100% { transform: rotate(10deg) scale(1.1); }
+      }
+      @keyframes rotar-dientes {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      .mensaje-alerta {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          width: 600px;
+          background: linear-gradient(
+              to bottom, 
+              rgba(139,0,0,0.9), 
+              rgba(80,0,0,0.9)
+          );
+          color: #FF4500;
+          padding: 40px;
+          border-radius: 20px;
+          text-align: center;
+          box-shadow: 
+              0 0 80px rgba(139,0,0,0.7),
+              0 0 120px rgba(255,0,0,0.5);
+          z-index: 200;
+          opacity: 0;
+          transition: all 1s ease;
+      }
+  </style>
+</head>
+<body>
+  <div class="fondo-glitch"></div>
+  
+  <div class="gusano-mecanico">
+      <div class="segmento-mecanico"></div>
+      
+      <div class="dientes-metalicos" style="top: -20px; left: 30%;"></div>
+      <div class="dientes-metalicos" style="bottom: -20px; right: 30%;"></div>
+      <div class="dientes-metalicos" style="top: 50%; left: -5%;"></div>
+      <div class="dientes-metalicos" style="top: 50%; right: -5%;"></div>
+  </div>
+
+  <div class="mensaje-alerta">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">¡INVASIÓN BIOLÓGICA!</h2>
+      <p style="font-size: 1.5rem; margin-bottom: 15px;">SISTEMA DE DEFENSA COLAPSADO</p>
+      <p style="font-size: 2rem; color: #FFD700; margin-bottom: 20px;">NIVEL DE RIESGO: CRÍTICO</p>
+      <p style="font-size: 1.7rem; margin-bottom: 15px;">PROTOCOLO DE EMERGENCIA ACTIVADO</p>
+      <p style="color: #FF4500; font-size: 2.5rem; margin-top: 20px; text-transform: uppercase;">
+          ¡VE AL LABORATORIO SALVA TU VIDA!
+      </p>
+  </div>
+
+  <script>
+      function generarSonidoInvasion() {
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+
+          oscillator.type = 'square';
+          oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+          
+          gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 3);
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.start();
+          oscillator.stop(audioContext.currentTime + 3);
+      }
+
+      function efectoGlitch() {
+          const body = document.body;
+          body.style.filter = 'contrast(200%) hue-rotate(90deg)';
+          setTimeout(() => {
+              body.style.filter = 'none';
+          }, 500);
+      }
+
+      function mostrarMensaje() {
+          const mensaje = document.querySelector('.mensaje-alerta');
+          mensaje.style.transform = 'translate(-50%, -50%) scale(1)';
+          mensaje.style.opacity = '1';
+      }
+
+      setTimeout(generarSonidoInvasion, 4000);
+      setTimeout(efectoGlitch, 5000);
+      setTimeout(mostrarMensaje, 7000);
+  </script>
+</body>
+</html>
